@@ -11,6 +11,26 @@
       <tr>
         <td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
         <td><%= user.name %></td>
+        <td><%= "フォロー数: #{user.follower.count}" %></td>
+        <td><%= "フォロワー数: #{user.followed.count}" %></td>
+
+        <!--17行目から27行目まで表示されない-->
+        <%# unless user == current_user %>
+        <% if user == -1 %>
+        <td>
+        <% if current_user.following?(user) %>
+        <%= link_to 'フォロー外す', relationship_path(user.id), method: :DELETE %>
+        <% else %>
+        <%= link_to 'フォローする', relationships_path, method: :POST %>
+        <% end %>
+        </td>
+        <% end %>
+
+
+        <td>
+          <%= render 'relationships/follow_form', user: user %>
+        </td>
+
         <td><%= link_to 'Show', user_path(user), class: "user_#{user.id}" %></td>
       </tr>
     <% end %>

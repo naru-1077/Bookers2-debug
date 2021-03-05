@@ -40,7 +40,7 @@
         <tr>
 　　　　  <td>
 　　　　    <%= link_to user_path(book_comment.user) do %>
-            <%= attachment_image_tag(book_comment.user, :profile_image, :fill, 100, 100, fallback: "no-image-icon.jpg") %><br>
+            <%= attachment_image_tag(book_comment.user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %><br>
             <%= book_comment.user.name %>
             <% end %>
           </td>
@@ -53,7 +53,7 @@
       </table>
       <div class="comment">
         <%= form_with(model:[@book, @book_comment], local: true) do |f| %>
-        <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+        <%= f.text_area :comment, size:"90x5", rows:'5',placeholder: "コメントをここに" %>
         <%= f.submit "送信" %>
         <% end %>
       </div>
